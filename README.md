@@ -1,5 +1,4 @@
 ##**博客见: 《[新浪微博爬虫分享（一天可抓取 1300 万条数据）](http://blog.csdn.net/bone_ace/article/details/50903178)》**##
---------
 
 <p>
 #**SinaSpider1:**#
