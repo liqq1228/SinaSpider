@@ -78,7 +78,7 @@ Transfer：微博被转发的数量。
 <p>
 <p>
 <p>
-#**SinaSpider1:**#
+#**SinaSpider2:**#
 ##**爬虫功能：**##
 
  - 此项目实现将单机的新浪微博爬虫（见[《新浪微博爬虫分享（一天可抓取 1300 万条数据）》](http://blog.csdn.net/bone_ace/article/details/50903178)）重构成分布式爬虫。
