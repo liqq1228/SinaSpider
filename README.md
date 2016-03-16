@@ -48,7 +48,6 @@
 SinaSpider主要爬取新浪微博的个人信息、微博数据、关注和粉丝。
 数据库设置 Information、Tweets、Follows、Fans四张表，此处仅介绍前面两张表的字段。
 
-> 
 **Information 表：**
 \_id：采用 "用户ID" 作为唯一标识。
 Birthday：出生日期。
@@ -64,7 +63,6 @@ Signature：个性签名。
 URL：微博的个人首页。
 
 <p>
-> 
 **Tweets 表：**
 \_id：采用 "用户ID-微博ID" 的形式作为一条微博的唯一标识。
 Co_oridinates：发微博时的定位坐标（经纬度），调用地图API可直接查看具体方位，可识别到在哪一栋楼。
