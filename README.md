@@ -1,4 +1,5 @@
-##**博客见: 《[新浪微博爬虫分享（一天可抓取 1300 万条数据）](http://blog.csdn.net/bone_ace/article/details/50903178)》**##
+##**Sina_Spider1见: 《[新浪微博爬虫分享（一天可抓取 1300 万条数据）](http://blog.csdn.net/bone_ace/article/details/50903178)》**##
+##**Sina_Spider2见: 《[新浪微博分布式爬虫分享](http://blog.csdn.net/bone_ace/article/details/50904718)》**##
 
 <p>
 #**SinaSpider1:**#
@@ -73,3 +74,33 @@ Like：微博被点赞的数量。
 PubTime：微博发表时间。
 Tools：发微博的工具（手机类型或者平台）
 Transfer：微博被转发的数量。
+
+<p>
+<p>
+#**SinaSpider1:**#
+##**爬虫功能：**##
+
+ - 此项目实现将单机的新浪微博爬虫（见[《新浪微博爬虫分享（一天可抓取 1300 万条数据）》](http://blog.csdn.net/bone_ace/article/details/50903178)）重构成分布式爬虫。
+ - Master机只管任务调度，不管爬数据；Slaver机只管将Request抛给Master机，需要Request的时候再从Master机拿。
+
+<p>
+<p>
+##**环境、架构：**##
+
+ - 开发语言：Python2.7
+ - 开发环境：64位Windows8系统，4G内存，i7-3612QM处理器。
+ - 数据库：MongoDB 3.2.0、Redis 3.0.501
+ - （Python编辑器：Pycharm；MongoDB管理工具：MongoBooster；Redis管理工具：RedisStudio）
+
+ - 爬虫框架使用 Scrapy，使用 scrapy_redis 和 Redis 实现分布式。
+ - 分布式中有一台机充当Master，安装Redis进行任务调度，其余机子充当Slaver只管从Master那里拿任务去爬。原理是：Slaver运行的时候，scrapy遇到Request并不是交给spider去爬，而是统一交给Master机上的Redis数据库，spider要爬的Request也都是从Redis中取来的，而Redis接收到Request后先去重再存入数据库，哪个Slaver要Request了再给它，由此实现任务协同。
+
+<p>
+<p>
+##**使用说明：**##
+
+ - Python需要安装好Scrapy、pymongo、json、base64、requests。
+ - Master机只需要安装好Redis即可（内存要求大点），Slaver机需要安装python环境和MongoDB来存储数据。如果想要将数据都存储到一台机子上，直接改一下爬虫程序（pipeline）里面MongoDB的IP即可，或者建议搭建一个MongoDB集群。Redis和MongoDB都是安装好即可，不需要配置。
+ - 将你用来登录的微博账号和密码加入到 cookies.py 文件中，里面已经有两个账号作为格式参考了。
+ - 可以修改scrapy里面setting的设置，例如间隔时间、日志级别、redis的IP等等。
+ - 以上配置完以后运行 Begin.py 即可。重申Master机不需要跑程序，它的功能是利用Redis进行任务调度。Slaver机跑爬虫，新增一台Slaver机，只需要把python环境和MongoDB搭建好，然后将代码复制过去直接运行就行了。
