@@ -1,5 +1,6 @@
 ##**Sina_Spider1: 《[新浪微博爬虫分享（一天可抓取 1300 万条数据）](http://blog.csdn.net/bone_ace/article/details/50903178)》**##
 ##**Sina_Spider2: 《[新浪微博分布式爬虫分享](http://blog.csdn.net/bone_ace/article/details/50904718)》**##
+##**Sina_Spider3: 《[新浪微博爬虫分享（2016年12月01日更新）](http://blog.csdn.net/bone_ace/article/details/53379904)》**##
 
 <p>
 #**SinaSpider1:**#
@@ -105,3 +106,16 @@ Transfer：微博被转发的数量。
  - 将你用来登录的微博账号和密码加入到 cookies.py 文件中，里面已经有两个账号作为格式参考了。
  - 可以修改scrapy里面setting的设置，例如间隔时间、日志级别、redis的IP等等。
  - 以上配置完以后运行 Begin.py 即可。重申Master机不需要跑程序，它的功能是利用Redis进行任务调度。Slaver机跑爬虫，新增一台Slaver机，只需要把python环境和MongoDB搭建好，然后将代码复制过去直接运行就行了。
+
+<p>
+<p>
+<p>
+#**SinaSpider2:**#
+##**微博数据：**##
+![新浪微博爬虫](http://img.blog.csdn.net/20161201005007048)
+
+<p>
+##**个人信息：**##
+![新浪微博个人信息](http://img.blog.csdn.net/20161201005024673)
+<p>
+<p>
