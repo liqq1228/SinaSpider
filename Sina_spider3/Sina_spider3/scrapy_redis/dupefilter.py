@@ -35,11 +35,11 @@ class RFPDupeFilter(BaseDupeFilter):
         uid = re.findall('(\d+)/info', request.url)
         if uid:
             uid = int(uid[0])
-            isExist = self.server.getbit(self.key + str(uid / 3000000000), uid % 3000000000)
+            isExist = self.server.getbit(self.key + str(uid / 4000000000), uid % 4000000000)
             if isExist == 1:
                 return True
             else:
-                self.server.setbit(self.key + str(uid / 3000000000), uid % 3000000000, 1)
+                self.server.setbit(self.key + str(uid / 4000000000), uid % 4000000000, 1)
                 return False
 
     def close(self, reason):
