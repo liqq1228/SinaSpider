@@ -125,7 +125,8 @@ class SpiderSimpleQueue(Base):
                 elif "/info" in url:
                     cb = getattr(self.spider, "parse_information")
                 else:
-                    raise ValueError("Method not found in: %s( URL:%s )" % (self.spider, url))
+                    return None
+                    # raise ValueError("Method not found in: %s( URL:%s )" % (self.spider, url))
                 return Request(url="http://weibo.cn%s" % url, callback=cb)
             except AttributeError:
                 raise ValueError("Method not found in: %s( URL:%s )" % (self.spider, url))
