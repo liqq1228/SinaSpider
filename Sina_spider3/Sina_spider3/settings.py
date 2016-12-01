@@ -1,9 +1,9 @@
 # encoding=utf-8
-# -----------------------------------------
+# ------------------------------------------
 #   版本：3.0
 #   日期：2016-12-01
 #   作者：九茶<http://blog.csdn.net/bone_ace>
-# -----------------------------------------
+# ------------------------------------------
 
 BOT_NAME = ['Sina_spider3']
 
@@ -35,7 +35,7 @@ FILTER_DB = 0
 
 DOWNLOAD_DELAY = 10  # 间隔时间
 LOG_LEVEL = 'INFO'  # 日志级别
-CONCURRENT_REQUESTS = 1
+CONCURRENT_REQUESTS = 1  # 默认为16
 # CONCURRENT_ITEMS = 1
 # CONCURRENT_REQUESTS_PER_IP = 1
 REDIRECT_ENABLED = False

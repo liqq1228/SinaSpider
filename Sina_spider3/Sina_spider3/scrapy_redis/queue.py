@@ -118,15 +118,14 @@ class SpiderSimpleQueue(Base):
             url = self.server.rpop(self.key)
         if url:
             try:
-                if "/follow" in url:
+                if "/follow" in url or "/fans" in url:
                     cb = getattr(self.spider, "parse_relationship")
                 elif "/profile" in url:
                     cb = getattr(self.spider, "parse_tweets")
                 elif "/info" in url:
                     cb = getattr(self.spider, "parse_information")
                 else:
-                    return None
-                    # raise ValueError("Method not found in: %s( URL:%s )" % (self.spider, url))
+                    raise ValueError("Method not found in: %s( URL:%s )" % (self.spider, url))
                 return Request(url="http://weibo.cn%s" % url, callback=cb)
             except AttributeError:
                 raise ValueError("Method not found in: %s( URL:%s )" % (self.spider, url))

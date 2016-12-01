@@ -1,9 +1,9 @@
 # encoding=utf-8
-# -----------------------------------------
+# ------------------------------------------
 #   版本：3.0
 #   日期：2016-12-01
 #   作者：九茶<http://blog.csdn.net/bone_ace>
-# -----------------------------------------
+# ------------------------------------------
 
 import sys
 import logging
@@ -106,6 +106,7 @@ class Spider(RedisSpider):
             yield informationItem
         yield Request(url="http://weibo.cn/%s/profile?filter=1&page=1" % ID, callback=self.parse_tweets, dont_filter=True)
         yield Request(url="http://weibo.cn/%s/follow" % ID, callback=self.parse_relationship, dont_filter=True)
+        yield Request(url="http://weibo.cn/%s/fans" % ID, callback=self.parse_relationship, dont_filter=True)
 
     def parse_tweets(self, response):
         """ 抓取微博数据 """
@@ -153,13 +154,18 @@ class Spider(RedisSpider):
     def parse_relationship(self, response):
         """ 打开url爬取里面的个人ID """
         selector = Selector(response)
-        ID = re.findall('(\d+)/follow', response.url)[0]
+        if "/follow" in response.url:
+            ID = re.findall('(\d+)/follow', response.url)[0]
+            flag = True
+        else:
+            ID = re.findall('(\d+)/fans', response.url)[0]
+            flag = False
         urls = selector.xpath('//a[text()="关注他" or text()="关注她"]/@href'.decode('utf')).extract()
         uids = re.findall('uid=(\d+)', ";".join(urls), re.S)
         for uid in uids:
             relationshipsItem = RelationshipsItem()
-            relationshipsItem["Host1"] = ID
-            relationshipsItem["Host2"] = uid
+            relationshipsItem["Host1"] = ID if flag else uid
+            relationshipsItem["Host2"] = uid if flag else ID
             yield relationshipsItem
             yield Request(url="http://weibo.cn/%s/info" % uid, callback=self.parse_information)
 
