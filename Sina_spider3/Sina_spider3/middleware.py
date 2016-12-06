@@ -68,8 +68,8 @@ class CookiesMiddleware(RetryMiddleware):
                 return self._retry(request, reason, spider) or response  # 重试
             except Exception, e:
                 raise IgnoreRequest
-        elif response.status == 403:
-            logger.error("403 Forbidden! Stopping...")
+        elif response.status in [403, 414]:
+            logger.error("%s! Stopping..." % response.status)
             os.system("pause")
         else:
             return response
