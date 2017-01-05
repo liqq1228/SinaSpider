@@ -8,7 +8,7 @@
 #   Added Mysql insert method
 # ------------------------------------------
 
-##import pymongo
+import pymongo
 from items import InformationItem, TweetsItem, RelationshipsItem
 import MySQLdb
 
@@ -47,7 +47,6 @@ class MysqlDBPipleline(object):
                 print("saved")
                 self.count = self.count +1
                 print(self.count)
-##                self.Relationships.insert(dict(item))
             except Exception:
                 pass
         elif isinstance(item, TweetsItem):
@@ -87,7 +86,6 @@ class MysqlDBPipleline(object):
                 print("saved")
                 self.count = self.count +1
                 print(self.count)
-##                self.Tweets.insert(dict(item))
             except Exception:
                 pass
         elif isinstance(item, InformationItem):
@@ -141,7 +139,6 @@ class MysqlDBPipleline(object):
                 print("saved")
                 self.count = self.count +1
                 print(self.count)
-##                self.Information.insert(dict(item))
             except Exception:
                 pass
             
@@ -166,29 +163,29 @@ class MysqlDBPipleline(object):
     
 
 
-##class MongoDBPipleline(object):
-##    def __init__(self):
-##        clinet = pymongo.MongoClient("localhost", 27017)
-##        db = clinet["Sina"]
-##        self.Information = db["Information"]
-##        self.Tweets = db["Tweets"]
-##        self.Relationships = db["Relationships"]
-##
-##    def process_item(self, item, spider):
-##        """ 判断item的类型，并作相应的处理，再入数据库 """
-##        if isinstance(item, RelationshipsItem):
-##            try:
-##                self.Relationships.insert(dict(item))
-##            except Exception:
-##                pass
-##        elif isinstance(item, TweetsItem):
-##            try:
-##                self.Tweets.insert(dict(item))
-##            except Exception:
-##                pass
-##        elif isinstance(item, InformationItem):
-##            try:
-##                self.Information.insert(dict(item))
-##            except Exception:
-##                pass
-##        return item
+class MongoDBPipleline(object):
+    def __init__(self):
+        clinet = pymongo.MongoClient("localhost", 27017)
+        db = clinet["Sina"]
+        self.Information = db["Information"]
+        self.Tweets = db["Tweets"]
+        self.Relationships = db["Relationships"]
+
+    def process_item(self, item, spider):
+        """ 判断item的类型，并作相应的处理，再入数据库 """
+        if isinstance(item, RelationshipsItem):
+            try:
+                self.Relationships.insert(dict(item))
+            except Exception:
+                pass
+        elif isinstance(item, TweetsItem):
+            try:
+                self.Tweets.insert(dict(item))
+            except Exception:
+                pass
+        elif isinstance(item, InformationItem):
+            try:
+                self.Information.insert(dict(item))
+            except Exception:
+                pass
+        return item
