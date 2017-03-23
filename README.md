@@ -21,8 +21,7 @@ Sina_Spider3增加了Cookie池的维护，优化了种子队列和去重队列�
 2、注意程序是有去重功能的，所以要清空数据重新跑的话一定要把redis的去重队列删掉，否则起始ID被记录为已爬的话也会出现抓取为空的现象。清空redis数据 运行cleanRedis.py即可。
 <br>
 3、另外，微博开始对IP有限制了，如果爬的快 可能会出现403，大规模抓取的话需要加上代理池。
-<p>
-<br><br>
+<br><br><br>
  -------------------
 <br>
 20170323更新：
@@ -42,7 +41,7 @@ Sina_Spider3增加了Cookie池的维护，优化了种子队列和去重队列�
 <br>
 2、安装Python模块PIL（请自行百度，可能道路比较坎坷）
 <br>
-3、验证码打码：我使用的是http://www.yundama.com/（真的不是打广告..），将username、password、appkey填入yumdama.py（正确率挺高，weibo.cn正常的验证码是4位字符，1元可以识别200个）。
+3、验证码打码：我使用的是 http://www.yundama.com/ （真的不是打广告..），将username、password、appkey填入yumdama.py（正确率挺高，weibo.cn正常的验证码是4位字符，1元可以识别200个）。
 <br>
 4、cookies.py中设置IDENTIFY=2，运行launch.py启动爬虫即可。
 <br><br>
