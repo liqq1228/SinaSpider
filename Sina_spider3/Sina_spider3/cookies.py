@@ -67,8 +67,10 @@ def getCookie(account, password):
 
             commit = browser.find_element_by_name("submit")
             commit.click()
-            time.sleep(4)
-
+            time.sleep(3)
+            if "我的首页" not in browser.title:
+                time.sleep(4)
+            
         cookie = {}
         if "我的首页" in browser.title:
             for elem in browser.get_cookies():
