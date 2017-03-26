@@ -36,11 +36,11 @@ def getCookie(account, password):
         browser = webdriver.PhantomJS(desired_capabilities=dcap)
         browser.get("https://weibo.cn/login/")
         time.sleep(1)
-        browser.save_screenshot("aa.png")
 
         failure = 0
         while "微博" in browser.title and failure < 5:
             failure += 1
+            browser.save_screenshot("aa.png")
             username = browser.find_element_by_name("mobile")
             username.clear()
             username.send_keys(account)
