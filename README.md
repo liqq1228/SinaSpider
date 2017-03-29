@@ -41,7 +41,7 @@ Sina_Spider3增加了Cookie池的维护，优化了种子队列和去重队列�
 <br>
 2、安装Python模块PIL（请自行百度，可能道路比较坎坷）
 <br>
-3、验证码打码：我使用的是 http://www.yundama.com/ （真的不是打广告..），将username、password、appkey填入yumdama.py（正确率挺高，weibo.cn正常的验证码是4位字符，1元可以识别200个）。
+3、验证码打码：我使用的是 http://www.yundama.com/ （真的不是打广告..），将username、password、appkey填入yumdama.py（正确率挺高，weibo.cn正常的验证码是4位字符，1元可以识别200个）。（如果一直出现302，调试发现yumdama.py一直返回空字符串，可将yumdama.py中的apiurl改成 'http://api.yundama.net:5678/api.php' 试试，在第38行前后，原值是 'http://api.yundama.com/api.php' 。）
 <br>
 4、cookies.py中设置IDENTIFY=2，运行launch.py启动爬虫即可。
 <br><br>
