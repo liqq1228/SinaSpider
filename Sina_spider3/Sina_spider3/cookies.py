@@ -41,9 +41,6 @@ def getCookie(account, password):
         while "微博" in browser.title and failure < 5:
             failure += 1
             browser.save_screenshot("aa.png")
-            if '未激活微博' in browser.page_source:
-                print '账号未开通微博'
-                return {}
             username = browser.find_element_by_name("mobile")
             username.clear()
             username.send_keys(account)
@@ -73,6 +70,9 @@ def getCookie(account, password):
             time.sleep(3)
             if "我的首页" not in browser.title:
                 time.sleep(4)
+            if '未激活微博' in browser.page_source:
+                print '账号未开通微博'
+                return {}
             
         cookie = {}
         if "我的首页" in browser.title:
