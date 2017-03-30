@@ -42,6 +42,7 @@ def getCookie(account, password):
             failure += 1
             browser.save_screenshot("aa.png")
             if '未激活微博' in browser.page_source:
+                print '账号未开通微博'
                 return {}
             username = browser.find_element_by_name("mobile")
             username.clear()
