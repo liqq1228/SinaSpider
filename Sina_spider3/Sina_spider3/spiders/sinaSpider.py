@@ -23,14 +23,14 @@ sys.setdefaultencoding('utf8')
 
 class Spider(RedisSpider):
     name = "SinaSpider"
-    host = "http://weibo.cn"
+    host = "https://weibo.cn"
     redis_key = "SinaSpider:start_urls"
     start_urls = list(set(weiboID))
     logging.getLogger("requests").setLevel(logging.WARNING)  # 将requests的日志级别设成WARNING
 
     def start_requests(self):
         for uid in self.start_urls:
-            yield Request(url="http://weibo.cn/%s/info" % uid, callback=self.parse_information)
+            yield Request(url="https://weibo.cn/%s/info" % uid, callback=self.parse_information)
 
     def parse_information(self, response):
         """ 抓取个人信息 """
