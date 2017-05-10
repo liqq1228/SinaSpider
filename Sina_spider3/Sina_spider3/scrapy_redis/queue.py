@@ -106,7 +106,7 @@ class SpiderSimpleQueue(Base):
 
     def push(self, request):
         """Push a request"""
-        self.server.lpush(self.key, request.url[15:])
+        self.server.lpush(self.key, request.url[16:])
 
     def pop(self, timeout=0):
         """Pop a request"""
